@@ -4,6 +4,7 @@ import pickle
 import time
 import cv2
 import os
+import tkinter as tk
 
 # find path of xml file containing haarcascade file
 cascPathface = os.path.dirname(
