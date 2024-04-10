@@ -47,7 +47,7 @@ while True:
             matchedIdxs = [i for (i, b) in enumerate(matches) if b]
             counts = {}
             # loop over the matched indexes and maintain a count for
-            # each recognized face face
+            # each recognized face
             for i in matchedIdxs:
                 # Check the names at respective indexes we stored in matchedIdxs
                 name = data["names"][i]
@@ -62,8 +62,13 @@ while True:
         for ((x, y, w, h), name) in zip(faces, names):
             # rescale the face coordinates
             # draw the predicted face name on the image
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            cv2.putText(frame, name, (x, y), cv2.FONT_HERSHEY_SIMPLEX,
+            if name == 'Unknown':
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv2.putText(frame, name, (x, y), cv2.FONT_HERSHEY_SIMPLEX,
+                            0.75, (0, 0, 255), 2)
+            else:
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                cv2.putText(frame, name, (x, y), cv2.FONT_HERSHEY_SIMPLEX,
                         0.75, (0, 255, 0), 2)
     cv2.imshow("Frame", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
