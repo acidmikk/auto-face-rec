@@ -97,7 +97,7 @@ class VideoPlayer:
                     left = int(left * 8 / 3)
                     # rescale the face coordinates
                     # draw the predicted face name on the image
-                    if name[:7] == 'Unknown':
+                    if name[:8] == 'Unknown_':
                         if name not in recognized_faces:
                             recognized_faces[name] = str(datetime.now())
                         cv2.rectangle(frame, (left, top), (right, bottom), (255, 0, 0), 2)
